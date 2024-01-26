@@ -1,7 +1,8 @@
 import "./style.css";
-import getCurrentWeather from "./weatherAPIController";
+import { get3DayForecast, getCurrentWeather } from "./weatherAPIController";
 
 console.log(getCurrentWeather("tampa"));
+console.log(get3DayForecast("tampa"));
 /**
  * Weather app features:
  * ----- DISPLAY -----

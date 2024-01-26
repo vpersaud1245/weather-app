@@ -1,10 +1,11 @@
 export default class WeatherData {
   constructor(
     city,
-    temp,
     condition,
     maxTemp,
     minTemp,
+    date,
+    temp,
     feelsLike,
     chanceOfRain,
     windMph,
@@ -16,10 +17,11 @@ export default class WeatherData {
     this.condition = condition;
     this.maxTemp = maxTemp;
     this.minTemp = minTemp;
-    this.feelsLike = feelsLike;
-    this.chanceOfRain = chanceOfRain;
-    this.windMph = windMph;
-    this.humidity = humidity;
-    this.uv = uv;
+    this.date = date;
+    this.feelsLike = 0 || feelsLike;
+    this.chanceOfRain = 0 || chanceOfRain;
+    this.windMph = 0 || windMph;
+    this.humidity = 0 || humidity;
+    this.uv = 0 || uv;
   }
 }
