@@ -1,3 +1,4 @@
+import renderSearchBar from "./renderSearchBar";
 import "./style.css";
 import {
   getWeatherForecast,
@@ -6,6 +7,8 @@ import {
 
 console.log(getWeatherForecast("33838", "2"));
 console.log(getSearchAutofillResults("33838"));
+
+renderSearchBar();
 /**
  * Weather app features:
  * ----- DISPLAY -----
