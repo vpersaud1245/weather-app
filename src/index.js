@@ -1,7 +1,11 @@
 import "./style.css";
-import { getWeatherForecast } from "./weatherAPIController";
+import {
+  getWeatherForecast,
+  getSearchAutofillResults,
+} from "./weatherAPIController";
 
-console.log(getWeatherForecast("Tampa", "2"));
+console.log(getWeatherForecast("33838", "2"));
+console.log(getSearchAutofillResults("33838"));
 /**
  * Weather app features:
  * ----- DISPLAY -----

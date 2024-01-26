@@ -12,12 +12,12 @@ const API_KEY = "8a48ddac42884c79bcc05824242401";
  * @param {number} [forecastedDays] - Number of days for the forecast (only applicable for "forecast" requests).
  * @returns {string} The formatted API call URL.
  */
-export function createApiUrl(requestType, location, forecastedDays) {
+export function createApiUrl(requestType, location, numOfDays) {
   if (requestType === "search") {
-    return `http://api.weatherapi.com/v1/${requestType}.json?key=${API_KEY}&q=${location}&aqi=no`;
+    return `http://api.weatherapi.com/v1/${requestType}.json?key=${API_KEY}&q=${location}`;
   }
   if (requestType === "forecast") {
-    return `http://api.weatherapi.com/v1/${requestType}.json?key=${API_KEY}&q=${location}&days=${forecastedDays}&aqi=no`;
+    return `http://api.weatherapi.com/v1/${requestType}.json?key=${API_KEY}&q=${location}&days=${numOfDays}&aqi=no`;
   }
   throw new Error("Request type not accepted");
 }
