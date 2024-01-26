@@ -1,8 +1,7 @@
 import "./style.css";
-import { get3DayForecast, getCurrentWeather } from "./weatherAPIController";
+import { getWeatherForecast } from "./weatherAPIController";
 
-console.log(getCurrentWeather("tampa"));
-console.log(get3DayForecast("tampa"));
+console.log(getWeatherForecast("los angeles", "3"));
 /**
  * Weather app features:
  * ----- DISPLAY -----
@@ -21,4 +20,9 @@ console.log(get3DayForecast("tampa"));
  * Has loading icon
  * Will display all possible cities when typing
  * When clicked will display info for that city
+ */
+
+/** TODO
+ * Refactor weather api calls into one function getWeatherForecast and add numOfDays param
+ * Needs to return an array
  */

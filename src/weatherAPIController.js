@@ -34,12 +34,15 @@ function createApiUrl(requestType, location, forecastedDays) {
 function createWeatherDataObject(
   location,
   date,
+  localTime,
   forecastedWeatherData,
   currentWeatherData,
 ) {
+  // Add forecasted days data points
   const { condition } = forecastedWeatherData;
   const maxTemp = Math.round(forecastedWeatherData.maxtemp_f);
   const minTemp = Math.round(forecastedWeatherData.mintemp_f);
+  // Add current day data points
   if (currentWeatherData !== undefined) {
     const temp = Math.round(currentWeatherData.temp_f);
     const feelsLike = Math.round(currentWeatherData.feelslike_f);
@@ -54,6 +57,7 @@ function createWeatherDataObject(
       minTemp,
       date,
       temp,
+      localTime,
       feelsLike,
       chanceOfRain,
       windMph,
@@ -69,64 +73,71 @@ function createWeatherDataObject(
  * Converts an array of forecasted data into an array of formatted weather data objects.
  *
  * @param {string} location - The location for which the weather data is collected.
+ * @param {string} localTime - The local time for the entire forecast (only needed for the current day).
  * @param {Array} forecastDataArray - An array containing forecasted weather data for multiple days.
+ * @param {object} currentWeatherData - Current weather data for the specified location.
  * @returns {Array<WeatherData>} An array of WeatherData objects containing formatted weather information for each forecasted day.
  */
-function createForecastObjectArray(location, forecastDataArray) {
+function createForecastObjectArray(
+  location,
+  localTime,
+  forecastDataArray,
+  currentWeatherData,
+) {
   const forecastObjectArray = [];
   if (forecastDataArray.length > 0) {
-    forecastDataArray.forEach((forecast) => {
+    for (let i = 0; i < forecastDataArray.length; i += 1) {
+      const forecast = forecastDataArray[i];
       const { date } = forecast;
-      forecastObjectArray.push(
-        createWeatherDataObject(location, date, forecast.day),
-      );
-    });
+
+      // If day is current day supply current weather data to retieve all of the data points
+      if (i === 0) {
+        forecastObjectArray.push(
+          createWeatherDataObject(
+            location,
+            date,
+            localTime,
+            forecast.day,
+            currentWeatherData,
+          ),
+        );
+      } else {
+        forecastObjectArray.push(
+          createWeatherDataObject(location, date, localTime, forecast.day),
+        );
+      }
+    }
   }
   return forecastObjectArray;
 }
 /* ----------------------------- */
 
 /* ----- API CALLS ----- */
+
 /**
- * Returns an object containing the current weather information for
- * the given location.
- * @param {String} location - The location to retrieve weather data for (city name or location id returned by search api)
+ * Retrieves and returns an array of weatherData objects for the specified location, including the current day.
+ *
+ * @param {string} location - The location for which to retrieve weather data (city name or location ID returned by the search API).
+ * @param {number} numOfDays - The number of days to retrieve weather forecast data (maximum 3).
+ * @returns {Array<WeatherData>} An array of WeatherData objects containing formatted weather information for each forecasted day.
  */
-async function getCurrentWeather(location) {
+export default async function getWeatherForecast(location, numOfDays) {
   try {
-    const url = createApiUrl("forecast", location, "1");
+    const url = createApiUrl("forecast", location, numOfDays);
     const response = await fetch(url, { mode: "cors" });
-    console.log(`Response Status: ${response.status}`);
     const jsonData = await response.json();
     const currentWeatherData = jsonData.current;
-    const forecastedWeatherData = jsonData.forecast.forecastday[0].day;
-    const currentDate = jsonData.forecast.forecastday[0].date;
-    const weatherData = createWeatherDataObject(
+    const forecastDaysArray = jsonData.forecast.forecastday;
+    const localTime = jsonData.location.localtime;
+    return createForecastObjectArray(
       location,
-      currentDate,
-      forecastedWeatherData,
+      localTime,
+      forecastDaysArray,
       currentWeatherData,
     );
-    return weatherData;
   } catch (error) {
     throw new Error(`Error fetching weather data: ${error}`);
   }
 }
 
-/**
- * Retrieves and returns the weather data for the next 3 days, including the current day, for the specified location.
- * @param {string} location - The location to retrieve weather data for (city name or location ID returned by the search API).
- */
-async function get3DayForecast(location) {
-  try {
-    const url = createApiUrl("forecast", location, 3);
-    const response = await fetch(url, { mode: "cors" });
-    const jsonData = await response.json();
-    const forecastDaysArray = jsonData.forecast.forecastday;
-    return createForecastObjectArray(location, forecastDaysArray);
-  } catch (error) {
-    throw new Error(`Error fetching weather data: ${error}`);
-  }
-}
-
-export { get3DayForecast, getCurrentWeather };
+export { getWeatherForecast };
