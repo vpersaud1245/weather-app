@@ -42,3 +42,112 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/*
+  ----- VARIABLES -----
+*/
+
+:root {
+  --searchbar-bg-clr: #1e1e1e;
+  --search-form-text-clr: #8d8d93;
+  --cancel-search-btn-text-clr: #fefffe;
+  --searchbar-options-list-font-size: 16px;
+  --search-form-main-font-size: 14px;
+}
+
+/*
+  ----- HEADER -----
+*/
+.header {
+  padding: 15px 30px;
+  display: flex;
+}
+
+/*
+  ----- SEARCH BAR FORM -----
+*/
+.location-search-form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid black;
+  border-radius: 7px;
+  height: 30px;
+  padding: 0 5px 0 10px;
+  font-size: var(--search-form-main-font-size);
+  flex: 1;
+  background-color: var(--searchbar-bg-clr);
+}
+
+/*
+  ----- SEARCH BAR INPUT -----
+*/
+.location-search-form__searchbar {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #fefffe;
+  background-color: var(--searchbar-bg-clr);
+}
+
+.location-search-form__searchbar::placeholder {
+  color: var(--search-form-text-clr);
+}
+
+.searchbar__search-icon {
+  height: 13px;
+  width: 13px;
+}
+
+/*
+  ----- CLEAR SEARCH BAR BTN -----
+*/
+.searchbar__clear-searchbar-btn {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  display: none;
+}
+
+.searchbar__clear-searchbar-btn:hover {
+  cursor: pointer;
+}
+
+.clear-searchbar-btn__icon {
+  height: 20px;
+  width: 20px;
+}
+
+/*
+  ----- AUTOFILL OPTIONS LIST -----
+*/
+.searchbar__autofill-options-list {
+  display: none;
+  position: absolute;
+  left: 0px;
+  top: 45px;
+  gap: 10px;
+  flex-direction: column;
+  list-style: none;
+  padding: 10px 10px 10px 0;
+  font-size: var(--searchbar-options-list-font-size);
+  color: var(--search-form-text-clr);
+}
+
+.autofill-options-list__option {
+  padding: 0 42px;
+  width: 100vw;
+}
+
+.autofill-options-list__option:hover {
+  cursor: pointer;
+}
+
+/*
+  ----- CANCEL SEARCH BTN -----
+*/
+.header__cancel-search-btn {
+  border: none;
+  background-color: transparent;
+  color: var(--cancel-search-btn-text-clr);
+}
