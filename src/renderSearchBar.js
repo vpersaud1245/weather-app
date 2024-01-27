@@ -1,5 +1,8 @@
 import { getSearchAutofillResults } from "./weatherAPIController";
 
+/*
+  ----- UI HELPER FUNCTIONS -----
+*/
 /**
  * Creates an HTML element representing a search autofill option.
  * @param {string} cityName - The name of the city.
@@ -191,6 +194,9 @@ function renderCancelSearchBtn() {
   header.append(cancelSearchBtn);
 }
 
+/*
+  ----- ADD SEARCHBAR EVENTS -----
+*/
 /**
  * Adds event listeners to the search bar to handle focus and input events.
  * Updates UI states based on user interactions with the search bar.
