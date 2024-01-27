@@ -1,4 +1,4 @@
-import renderSearchBar from "./renderSearchBar";
+import renderSearchBar from "./searchBarController";
 import "./style.css";
 import {
   getWeatherForecast,

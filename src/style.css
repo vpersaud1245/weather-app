@@ -56,11 +56,19 @@ h6 {
 }
 
 /*
+  ----- WEATHER DASHBOARD -----
+*/
+.weather-dashboard {
+  background-image: url("./assets//backgrounds/Background.png");
+  height: 100vh;
+  padding: 15px 30px;
+}
+/*
   ----- HEADER -----
 */
 .header {
-  padding: 15px 30px;
   display: flex;
+  margin-bottom: 15px;
 }
 
 /*
@@ -150,4 +158,16 @@ h6 {
   border: none;
   background-color: transparent;
   color: var(--cancel-search-btn-text-clr);
+}
+
+/*
+  ----- MAIN -----
+*/
+
+/*
+  ----- CURRENT WEATHER -----
+*/
+
+.current-weather {
+  border: 1px solid white;
 }

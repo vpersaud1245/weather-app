@@ -6,31 +6,40 @@
     <title><%=htmlWebpackPlugin.options.title%></title>
   </head>
   <body>
-    <header class="header">
-      <form class="location-search-form" novalidate>
-        <img
-          class="searchbar__search-icon"
-          src="<%=require('./assets/search-icon.svg')%>"
-          alt="search-icon-magnifying-glass"
-        />
-        <input
-          class="location-search-form__searchbar"
-          type="text"
-          placeholder="Search for a city or zipcode"
-        />
-        <button class="searchbar__clear-searchbar-btn">
+    <div class="weather-dashboard">
+      <header class="header">
+        <form class="location-search-form" novalidate>
           <img
-            class="clear-searchbar-btn__icon"
-            src="<%=require('./assets/clear-searchbar-icon.svg')%>"
-            alt="clear-searchbar-icon"
+            class="searchbar__search-icon"
+            src="<%=require('./assets/searchbar-icons/search-icon.svg')%>"
+            alt="search-icon-magnifying-glass"
           />
-        </button>
-      </form>
-      <ul class="searchbar__autofill-options-list"></ul>
-    </header>
-
-    <main class="main">
-      <h1>Title</h1>
-    </main>
+          <input
+            class="location-search-form__searchbar"
+            type="text"
+            placeholder="Search for a city or zipcode"
+          />
+          <button class="searchbar__clear-searchbar-btn">
+            <img
+              class="clear-searchbar-btn__icon"
+              src="<%=require('./assets/searchbar-icons/clear-searchbar-icon.svg')%>"
+              alt="clear-searchbar-icon"
+            />
+          </button>
+        </form>
+        <ul class="searchbar__autofill-options-list"></ul>
+      </header>
+      <main class="main">
+        <div class="current-weather">
+          <div class="current-weather__city"></div>
+          <div class="current-weather__temperature"></div>
+          <div class="current-weather__condition"></div>
+          <div class="current-weather__high-low">
+            <div class="current-weather__high-low--high"></div>
+            <div class="current-weather__high-low--low"></div>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

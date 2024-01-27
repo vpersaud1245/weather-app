@@ -1,64 +1,11 @@
-import { getSearchAutofillResults } from "./weatherAPIController";
+import {
+  getSearchAutofillResults,
+  getWeatherForecast,
+} from "./weatherAPIController";
 
 /*
   ----- UI HELPER FUNCTIONS -----
 */
-/**
- * Creates an HTML element representing a search autofill option.
- * @param {string} cityName - The name of the city.
- * @param {string} region - The region associated with the city.
- * @param {string} country - The country associated with the city.
- * @param {string} locationID - The unique identifier for the location.
- * @returns {HTMLLIElement} A list item (li) HTML element representing the search autofill option.
- */
-function createAutofillOptionHtmlElement(
-  cityName,
-  region,
-  country,
-  locationID,
-) {
-  // Create Element
-  const optionElement = document.createElement("li");
-  optionElement.classList.add("autofill-options-list__option");
-  optionElement.id = locationID;
-  optionElement.textContent = `${cityName}, ${region}, ${country}`;
-
-  // Add mousedown listener to change background color to selected state
-  optionElement.addEventListener("mousedown", () => {
-    optionElement.style.backgroundColor = "#3a3a3c";
-  });
-  return optionElement;
-}
-
-/**
- * Populates the search autofill options list with HTML elements based on the provided array of option objects.
- * @param {Array} autofillOptions - An array of objects representing search autofill options.
- * @returns {void}
- */
-function populateAutoFillOptionsList(autofillOptions) {
-  const autofillOptionList = document.querySelector(
-    ".searchbar__autofill-options-list",
-  );
-  autofillOptions.forEach((autofillOption) => {
-    // Get option properties
-    const cityName = autofillOption.name;
-    const { region } = autofillOption;
-    const { country } = autofillOption;
-    const locationID = autofillOption.id;
-
-    // Create option HTML element
-    const autofillOptionElement = createAutofillOptionHtmlElement(
-      cityName,
-      region,
-      country,
-      locationID,
-    );
-
-    // Append element to list
-    autofillOptionList.append(autofillOptionElement);
-  });
-}
-
 /**
  * Renders the search autofill options list by setting its display property to "flex".
  */
@@ -146,7 +93,7 @@ function setFormBoxShadow(type) {
   }
 
   if (type === "transparent") {
-    form.style.boxShadow = "0px 0px 0px 10000px rgba(0,0,0, 0.8)";
+    form.style.boxShadow = "0px 0px 0px 10000px rgba(0,0,0, 0.1)";
   }
 
   if (type === "none") {
@@ -192,6 +139,68 @@ function renderCancelSearchBtn() {
 
   // Append button
   header.append(cancelSearchBtn);
+}
+
+/**
+ * Creates an HTML element representing a search autofill option.
+ * @param {string} cityName - The name of the city.
+ * @param {string} region - The region associated with the city.
+ * @param {string} country - The country associated with the city.
+ * @param {string} locationURL - The unique URL identifier for the location.
+ * @returns {HTMLLIElement} A list item (li) HTML element representing the search autofill option.
+ */
+function createAutofillOptionHtmlElement(
+  cityName,
+  region,
+  country,
+  locationURL,
+) {
+  // Create Element
+  const optionElement = document.createElement("li");
+  optionElement.classList.add("autofill-options-list__option");
+  optionElement.id = locationURL;
+  optionElement.textContent = `${cityName}, ${region}, ${country}`;
+
+  // Add mousedown listener to change background color to selected state
+  optionElement.addEventListener("mousedown", () => {
+    optionElement.style.backgroundColor = "#3a3a3c";
+  });
+
+  // Add click listener to render weather forecast for selected location
+  optionElement.addEventListener("click", () => {
+    cancelSearch();
+    console.log(getWeatherForecast(locationURL, "3"));
+  });
+  return optionElement;
+}
+
+/**
+ * Populates the search autofill options list with HTML elements based on the provided array of option objects.
+ * @param {Array} autofillOptions - An array of objects representing search autofill options.
+ * @returns {void}
+ */
+function populateAutoFillOptionsList(autofillOptions) {
+  const autofillOptionList = document.querySelector(
+    ".searchbar__autofill-options-list",
+  );
+  autofillOptions.forEach((autofillOption) => {
+    // Get option properties
+    const cityName = autofillOption.name;
+    const { region } = autofillOption;
+    const { country } = autofillOption;
+    const locationURL = autofillOption.url;
+
+    // Create option HTML element
+    const autofillOptionElement = createAutofillOptionHtmlElement(
+      cityName,
+      region,
+      country,
+      locationURL,
+    );
+
+    // Append element to list
+    autofillOptionList.append(autofillOptionElement);
+  });
 }
 
 /*
