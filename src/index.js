@@ -1,12 +1,5 @@
 import renderSearchBar from "./searchBarController";
 import "./style.css";
-import {
-  getWeatherForecast,
-  getSearchAutofillResults,
-} from "./weatherAPIController";
-
-console.log(getWeatherForecast("33838", "2"));
-console.log(getSearchAutofillResults("33838"));
 
 renderSearchBar();
 /**
@@ -27,4 +20,11 @@ renderSearchBar();
  * Has loading icon
  * Will display all possible cities when typing
  * When clicked will display info for that city
+ */
+
+/**
+ * ----- TODO -----
+ * * SEARCH:
+ * - Add cancel btn animation
+ * - Add text highlighting to match search
  */

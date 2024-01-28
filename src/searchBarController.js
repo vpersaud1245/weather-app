@@ -2,6 +2,7 @@ import {
   getSearchAutofillResults,
   getWeatherForecast,
 } from "./weatherAPIController";
+import populateCurrentWeatherDisplay from "./currentWeatherDisplayController";
 
 /*
   ----- UI HELPER FUNCTIONS -----
@@ -88,12 +89,12 @@ function hideClearSearchbarBtn() {
 function setFormBoxShadow(type) {
   const form = document.querySelector(".location-search-form");
   if (type === "black") {
-    form.style.boxShadow = "0px 0px 0px 10000px rgba(0,0,0)";
+    form.style.boxShadow = "0px 0px 0px 10000px rgb(0,0,0)";
     return;
   }
 
   if (type === "transparent") {
-    form.style.boxShadow = "0px 0px 0px 10000px rgba(0,0,0, 0.1)";
+    form.style.boxShadow = "0px 0px 0px 10000px rgba(0,0,0, 0.8)";
   }
 
   if (type === "none") {
@@ -117,6 +118,8 @@ function removeCancelSearchBtn() {
 function cancelSearch() {
   setFormBoxShadow("none");
   removeCancelSearchBtn();
+  const form = document.querySelector(".location-search-form");
+  form.style.width = "100%";
   clearAutoFillOptionsList();
   hideAutofillOptionList();
   clearSearchBar();
@@ -135,7 +138,9 @@ function renderCancelSearchBtn() {
   cancelSearchBtn.textContent = "Cancel";
 
   // Add button click listener
-  cancelSearchBtn.addEventListener("click", cancelSearch);
+  cancelSearchBtn.addEventListener("click", () => {
+    cancelSearch();
+  });
 
   // Append button
   header.append(cancelSearchBtn);
@@ -169,7 +174,8 @@ function createAutofillOptionHtmlElement(
   // Add click listener to render weather forecast for selected location
   optionElement.addEventListener("click", () => {
     cancelSearch();
-    console.log(getWeatherForecast(locationURL, "3"));
+    const weatherData = getWeatherForecast(locationURL, 3);
+    populateCurrentWeatherDisplay(cityName, weatherData);
   });
   return optionElement;
 }
@@ -217,12 +223,23 @@ export default function addSearchbarEvents() {
    * Handles the focus event on the search bar.
    * Updates UI states when the search bar gains focus.
    */
-  searchbar.addEventListener("focus", () => {
+  searchbar.addEventListener("focus", async () => {
     if (searchbar.value === "") {
       setFormBoxShadow("transparent");
-      removeCancelSearchBtn();
-      renderCancelSearchBtn();
+      // Set searchbar width
+      const form = document.querySelector(".location-search-form");
+      form.style.width = "87%";
+      form.addEventListener("transitionend", renderCancelSearchBtn);
     }
+  });
+
+  /**
+   * Removes the event listener that renders the cancel button
+   * on the end of a form transition
+   */
+  searchbar.addEventListener("blur", () => {
+    const form = document.querySelector(".location-search-form");
+    form.removeEventListener("transitionend", renderCancelSearchBtn);
   });
 
   /**

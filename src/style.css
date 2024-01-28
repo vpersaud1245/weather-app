@@ -83,8 +83,10 @@ h6 {
   height: 30px;
   padding: 0 5px 0 10px;
   font-size: var(--search-form-main-font-size);
-  flex: 1;
+  width: 100%;
+  transition: width 500ms;
   background-color: var(--searchbar-bg-clr);
+  z-index: 1;
 }
 
 /*
@@ -140,6 +142,7 @@ h6 {
   padding: 10px 10px 10px 0;
   font-size: var(--searchbar-options-list-font-size);
   color: var(--search-form-text-clr);
+  z-index: 1;
 }
 
 .autofill-options-list__option {
@@ -154,10 +157,12 @@ h6 {
 /*
   ----- CANCEL SEARCH BTN -----
 */
+
 .header__cancel-search-btn {
   border: none;
   background-color: transparent;
   color: var(--cancel-search-btn-text-clr);
+  z-index: 1;
 }
 
 /*
@@ -170,4 +175,28 @@ h6 {
 
 .current-weather {
   border: 1px solid white;
+  height: 250px;
+  display: grid;
+  place-content: center;
+  color: white;
+  text-align: center;
+}
+
+.current-weather__city {
+  font-size: 25px;
+}
+
+.current-weather__temperature {
+  font-size: 60px;
+}
+
+.current-weather__condition {
+  font-size: 16px;
+}
+
+.current-weather__high-low {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
