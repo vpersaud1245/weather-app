@@ -1,4 +1,7 @@
-import { createApiUrl, createForecastObjectArray } from "./weatherAPIService";
+import {
+  createApiUrl,
+  createForecastObjectArray,
+} from "../serviceModules/weatherAPIService";
 
 /* ----- API CALLS ----- */
 

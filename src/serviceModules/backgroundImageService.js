@@ -1,4 +1,4 @@
-import backgroundImages from "./backgroundImages";
+import backgroundImages from "../backgroundImages";
 
 /**
  * Gets the hour from the local time.

@@ -1,4 +1,4 @@
-import getBackgroundImgUrl from "./backgroundImageService";
+import getBackgroundImgUrl from "../serviceModules/backgroundImageService";
 
 export default function setBackgroundImg(backgroundIDCode, localTime) {
   const backgroundUrl = getBackgroundImgUrl(backgroundIDCode, localTime);

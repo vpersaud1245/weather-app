@@ -1,4 +1,4 @@
-import WeatherData from "./weatherData";
+import WeatherData from "../classes/weatherData";
 
 const API_KEY = "8a48ddac42884c79bcc05824242401";
 
