@@ -191,6 +191,7 @@ body {
   place-content: center;
   color: white;
   text-align: center;
+  border-radius: 5px;
 }
 
 .current-weather__city {
@@ -210,4 +211,5 @@ body {
   font-size: 16px;
   display: flex;
   gap: 5px;
+  justify-content: center;
 }

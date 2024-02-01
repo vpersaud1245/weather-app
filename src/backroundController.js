@@ -2,8 +2,8 @@ import "./assets/backgrounds/Weather=Clear,Moment=Day.png";
 import "./assets/backgrounds/Weather=Clear,Moment=Night.png";
 import "./assets/backgrounds/Weather=Cloudy,Moment=Day.png";
 import "./assets/backgrounds/Weather=Cloudy,Moment=Night.png";
-import "./assets/backgrounds/Weather=Partly Cloudy,Moment=Day.png";
-import "./assets/backgrounds/Weather=Partly Cloudy,Moment=Night.png";
+import "./assets/backgrounds/Weather=Partly_Cloudy,Moment=Day.png";
+import "./assets/backgrounds/Weather=Partly_Cloudy,Moment=Night.png";
 import "./assets/backgrounds/Weather=Rain,Moment=Day.png";
 import "./assets/backgrounds/Weather=Rain,Moment=Night.png";
 import "./assets/backgrounds/Weather=Snow,Moment=Day.png";
@@ -11,39 +11,66 @@ import "./assets/backgrounds/Weather=Snow,Moment=Night.png";
 import "./assets/backgrounds/Weather=Storm,Moment=Day.png";
 import "./assets/backgrounds/Weather=Storm,Moment=Night.png";
 
-const clearBackgroundIDCodes = [1000];
-const partyCloudyBackgroundIDCodes = [1003];
-const cloudyBackgroundIDCodes = [1006, 1009, 1030, 1135, 1147];
-const rainBackgroundIDCodes = [
-  1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243,
-];
-const snowBackgroundIDCodes = [
-  1066, 1069, 1072, 1114, 1168, 1171, 1204, 1207, 1210, 1213, 1216, 1219, 1222,
-  1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264,
-];
-const stormBackgroundIDCodes = [
-  1273, 1276, 1279, 1282, 1087, 1117, 1246, 1246, 1087, 1117,
-];
+const backgoundIDCodes = {
+  clear: [1000],
+  "party cloudy": [1003],
+  cloudy: [1006, 1009, 1030, 1135, 1147],
+  rain: [
+    1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240,
+    1243,
+  ],
+  snow: [
+    1066, 1069, 1072, 1114, 1168, 1171, 1204, 1207, 1210, 1213, 1216, 1219,
+    1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264,
+  ],
+  storm: [1273, 1276, 1279, 1282, 1087, 1117, 1246, 1246, 1087, 1117],
+};
+// const clearBackgroundIDCodes = [1000];
+// const partyCloudyBackgroundIDCodes = [1003];
+// const cloudyBackgroundIDCodes = [1006, 1009, 1030, 1135, 1147];
+// const rainBackgroundIDCodes = [
+//   1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243,
+// ];
+// const snowBackgroundIDCodes = [
+//   1066, 1069, 1072, 1114, 1168, 1171, 1204, 1207, 1210, 1213, 1216, 1219, 1222,
+//   1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264,
+// ];
+// const stormBackgroundIDCodes = [
+//   1273, 1276, 1279, 1282, 1087, 1117, 1246, 1246, 1087, 1117,
+// ];
 
 function getHourFromLocalTime(localTime) {
   return Number(localTime.slice(-5, -3));
 }
 
 function getTimeOfDay(hour) {
-  if (hour >= 20 || hour <= 6) {
+  const NIGHTSTART = 20;
+  const NIGHTEND = 6;
+  if (hour >= NIGHTSTART || hour <= NIGHTEND) {
     return "Night";
   }
   return "Day";
 }
 
+// function getWeatherConditionFromCode(backgroundIDCode) {
+//   if (clearBackgroundIDCodes.includes(backgroundIDCode)) return "Clear";
+//   if (partyCloudyBackgroundIDCodes.includes(backgroundIDCode))
+//     return "Partly Cloudy";
+//   if (cloudyBackgroundIDCodes.includes(backgroundIDCode)) return "Cloudy";
+//   if (rainBackgroundIDCodes.includes(backgroundIDCode)) return "Rain";
+//   if (snowBackgroundIDCodes.includes(backgroundIDCode)) return "Snow";
+//   if (stormBackgroundIDCodes.includes(backgroundIDCode)) return "Storm";
+//   return "Code not found";
+// }
+
 function getWeatherConditionFromCode(backgroundIDCode) {
-  if (clearBackgroundIDCodes.includes(backgroundIDCode)) return "Clear";
-  if (partyCloudyBackgroundIDCodes.includes(backgroundIDCode))
-    return "Partly Cloudy";
-  if (cloudyBackgroundIDCodes.includes(backgroundIDCode)) return "Cloudy";
-  if (rainBackgroundIDCodes.includes(backgroundIDCode)) return "Rain";
-  if (snowBackgroundIDCodes.includes(backgroundIDCode)) return "Snow";
-  if (stormBackgroundIDCodes.includes(backgroundIDCode)) return "Storm";
+  if (backgoundIDCodes.clear.includes(backgroundIDCode)) return "Clear";
+  if (backgoundIDCodes["party cloudy"].includes(backgroundIDCode))
+    return "Partly_Cloudy";
+  if (backgoundIDCodes.cloudy.includes(backgroundIDCode)) return "Cloudy";
+  if (backgoundIDCodes.rain.includes(backgroundIDCode)) return "Rain";
+  if (backgoundIDCodes.snow.includes(backgroundIDCode)) return "Snow";
+  if (backgoundIDCodes.storm.includes(backgroundIDCode)) return "Storm";
   return "Code not found";
 }
 
