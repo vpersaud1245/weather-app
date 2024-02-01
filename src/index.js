@@ -1,4 +1,4 @@
-import renderSearchBar from "./searchBarController";
+import renderSearchBar from "./controllers/searchBarController";
 import "./style.css";
 
 renderSearchBar();

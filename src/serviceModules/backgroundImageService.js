@@ -1,4 +1,4 @@
-import backgroundImages from "../backgroundImages";
+import backgroundImages from "./backgroundImages";
 
 /**
  * Gets the hour from the local time.
@@ -71,7 +71,7 @@ function getWeatherConditionFromCode(weatherConditionCode) {
  * @returns {String} - The URL for the corresponding background image.
  * @throws {Error} - If the weather condition code is not found in the mapping.
  */
-export default function getBackgroundImgUrl(localTime, weatherConditionCode) {
+export default function getBackgroundImgUrl(weatherConditionCode, localTime) {
   // Get time and weather condition
   const timeOfDay = getTimeOfDay(localTime);
   const condition = getWeatherConditionFromCode(weatherConditionCode);
