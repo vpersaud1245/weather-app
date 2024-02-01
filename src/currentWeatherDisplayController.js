@@ -1,5 +1,10 @@
-import setBackgroundImg from "./backroundController";
+import setBackgroundImg from "./backroundImageController";
 
+/**
+ * Populates the current weather display on the UI with information from the provided weather data array.
+ * @param {string} cityName - The name of the city for which the weather is displayed.
+ * @param {Promise<Array>} weatherDataArray - A promise resolving to an array of weather data.
+ */
 export default function populateCurrentWeatherDisplay(
   cityName,
   weatherDataArray,
