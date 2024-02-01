@@ -40,11 +40,12 @@ function createWeatherDataObject(
   currentWeatherData,
 ) {
   // Add forecasted days data points
-  const { condition } = forecastedWeatherData;
+  let { condition } = forecastedWeatherData;
   const maxTemp = Math.round(forecastedWeatherData.maxtemp_f);
   const minTemp = Math.round(forecastedWeatherData.mintemp_f);
   // Add current day data points
   if (currentWeatherData !== undefined) {
+    condition = currentWeatherData.condition;
     const temp = Math.round(currentWeatherData.temp_f);
     const feelsLike = Math.round(currentWeatherData.feelslike_f);
     const chanceOfRain = forecastedWeatherData.daily_chance_of_rain;
