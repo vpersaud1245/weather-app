@@ -188,6 +188,7 @@ body {
 .weather-dashboard {
   height: 100vh;
   background-size: cover;
+  overflow: scroll;
 }
 
 .main {
@@ -278,4 +279,60 @@ body {
 
 .forecast-item__high-low--low {
   font-size: 14px;
+}
+
+/*
+  ----- WEATHER DETAILS -----
+*/
+
+.weather-details {
+  display: none;
+  grid-template-areas:
+    "precipitation precipitation"
+    "feels-like wind-speed"
+    "humidity uv-index";
+  color: white;
+  gap: 10px;
+}
+
+.weather-details__title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.title__label {
+  font-size: 12px;
+}
+
+.weather-details__item {
+  background-color: rgba(181, 181, 197, 0.292);
+  border-radius: 5px;
+  padding: 10px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.weather-details__data {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.weather-details__precipitation {
+  grid-area: precipitation;
+}
+
+.weather-details__feels-like {
+  grid-area: feels-like;
+}
+.weather-details__wind-speed {
+  grid-area: wind-speed;
+}
+.weather-details__humidity {
+  grid-area: humidity;
+}
+.weather-details__uv-index {
+  grid-area: uv-index;
 }

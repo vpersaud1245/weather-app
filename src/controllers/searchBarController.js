@@ -4,6 +4,7 @@ import {
 } from "./weatherAPIController";
 import populateCurrentWeatherDisplay from "./currentWeatherDisplayController";
 import populateForecastDisplay from "./forecastDisplayController";
+import populateWeatherDetailDisplay from "./weatherDetailDisplayController";
 
 /*
   ----- UI HELPER FUNCTIONS -----
@@ -179,6 +180,7 @@ function createAutofillOptionHtmlElement(
     const weatherData = getWeatherForecast(locationURL, 3);
     populateCurrentWeatherDisplay(cityName, weatherData);
     populateForecastDisplay(weatherData);
+    populateWeatherDetailDisplay(weatherData);
   });
   return optionElement;
 }

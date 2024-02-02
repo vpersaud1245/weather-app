@@ -27,8 +27,6 @@ renderSearchBar();
  * * SEARCH:
  * - Add cancel btn animation
  * - Add text highlighting to match search
- * Refactor Background Controller
- * Add docs and comments
  * Make a render weather dashboard function
  * Make loading pages/wheels
  */
