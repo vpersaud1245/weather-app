@@ -148,7 +148,8 @@ function renderCancelSearchBtn() {
 }
 
 /**
- * Creates an HTML element representing a search autofill option.
+ * Creates an HTML element representing a search autofill option and configures event listeners for interaction.
+ * When clicked, the option triggers the display of the weather dashboard for the selected location.
  * @param {string} cityName - The name of the city.
  * @param {string} region - The region associated with the city.
  * @param {string} country - The country associated with the city.

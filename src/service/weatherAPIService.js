@@ -23,7 +23,7 @@ export function createApiUrl(requestType, location, numOfDays) {
 }
 
 /**
- * Combines and formats the current and forecasted weather data for the current day
+ * Combines and formats the current and forecasted weather data
  * to create a new object with key data points.
  *
  * @param {string} location - The location for which the weather data is collected.
@@ -80,7 +80,7 @@ function createWeatherDataObject(
  * @param {string} localTime - The local time for the entire forecast (only needed for the current day).
  * @param {Array} forecastDataArray - An array containing forecasted weather data for multiple days.
  * @param {object} currentWeatherData - Current weather data for the specified location.
- * @returns {Array<WeatherData>} An array of WeatherData objects containing formatted weather information for each forecasted day.
+ * @returns {Promise<WeatherData>} A promise which resolves into an array of WeatherData objects containing formatted weather information for each forecasted day.
  */
 export function createForecastObjectArray(
   location,

@@ -1,3 +1,4 @@
+// Import weather condition icons for different weather conditions
 import clear from "../assets/weather-condition-icons/Weather=Clear.png";
 import partlyCloudy from "../assets/weather-condition-icons/Weather=Partly_Cloudy.png";
 import cloudy from "../assets/weather-condition-icons/Weather=Cloudy.png";

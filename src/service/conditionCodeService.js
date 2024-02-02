@@ -1,5 +1,5 @@
 /**
- * Mapping of weather condition codes returned by the API to conditions used for displaying backgrounds.
+ * Mapping of weather condition codes returned by the API to conditions used for display.
  * @type {Object}
  */
 const conditionCodeMap = {
@@ -18,17 +18,23 @@ const conditionCodeMap = {
 };
 
 /**
- * Returns a weather condition to be used in setting the current weather background.
- * @param {String} weatherConditionCode - The code representing a specific weather condition.
- * @returns {String} The corresponding weather condition for background display.
+ * Retrieves the general weather condition for background and icon display based on the provided weather condition code.
+ * @param {string} weatherConditionCode - The code representing a specific weather condition.
+ * @returns {string} The corresponding weather condition (Clear, Partly Cloudy, Cloudy, Rain, Snow, Storm) for display purposes.
  */
 export default function getWeatherConditionFromCode(weatherConditionCode) {
   if (conditionCodeMap.clear.includes(weatherConditionCode)) return "clear";
+
   if (conditionCodeMap["party cloudy"].includes(weatherConditionCode))
     return "partlyCloudy";
+
   if (conditionCodeMap.cloudy.includes(weatherConditionCode)) return "cloudy";
+
   if (conditionCodeMap.rain.includes(weatherConditionCode)) return "rain";
+
   if (conditionCodeMap.snow.includes(weatherConditionCode)) return "snow";
+
   if (conditionCodeMap.storm.includes(weatherConditionCode)) return "storm";
+
   return "Weather condition code not found in function getWeatherConditionCode";
 }

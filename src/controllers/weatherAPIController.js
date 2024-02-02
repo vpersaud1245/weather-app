@@ -10,7 +10,7 @@ import {
  *
  * @param {string} location - The location for which to retrieve weather data (city name, zipcode or location ID returned by the search API).
  * @param {number} numOfDays - The number of days to retrieve weather forecast data (maximum 3).
- * @returns {Array<WeatherData>} An array of WeatherData objects containing formatted weather information for each forecasted day.
+ * @returns {Promise<WeatherData>} A promise which resolves to an array of WeatherData objects containing formatted weather information for each forecasted day.
  */
 export async function getWeatherForecast(location, numOfDays) {
   try {
@@ -34,7 +34,7 @@ export async function getWeatherForecast(location, numOfDays) {
 /**
  * Fetches autofill options from the API based on the provided location search value.
  * @param {string} searchValue - The completed or incomplete location search value (city name or zipcode).
- * @returns {Promise<Array>} A promise that resolves to an array of autofill options from the API.
+ * @returns {Promise<Array>} A promise which resolves to an array of autofill options from the API.
  */
 export async function getSearchAutofillResults(searchValue) {
   try {

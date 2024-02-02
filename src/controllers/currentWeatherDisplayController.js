@@ -1,9 +1,10 @@
-import setBackgroundImg from "./backroundImageController";
+import getBackgroundImg from "../service/backroundImageService";
 
 /**
  * Returns An object containing all of the current weather DOM elements
  */
 function getCurrentWeatherDomELements() {
+  const currentWeatherContainer = document.querySelector(".current-weather");
   const cityName = document.querySelector(".current-weather__city");
   const currentTemp = document.querySelector(".current-weather__temperature");
   const currentCondition = document.querySelector(
@@ -12,13 +13,16 @@ function getCurrentWeatherDomELements() {
   const highTemp = document.querySelector(".current-weather__high-low--high");
   const highLowDividerSlash = document.querySelector(".high-low-temp__divider");
   const lowTemp = document.querySelector(".current-weather__high-low--low");
+  const weatherDashboard = document.querySelector(".weather-dashboard");
   return {
+    currentWeatherContainer,
     cityName,
     currentTemp,
     currentCondition,
     highTemp,
     highLowDividerSlash,
     lowTemp,
+    weatherDashboard,
   };
 }
 
@@ -40,10 +44,13 @@ export default function populateCurrentWeatherDisplay(
     const conditionCode = currentWeatherData.condition.code;
     const { localTime } = currentWeatherData;
 
+    // Get background image matching condition and time of day
+    const backgroundImage = getBackgroundImg(conditionCode, localTime);
+
     const DEGREE_SYMBOL = "&deg;";
 
     // Populate DOM Elements with current weather Data
-    setBackgroundImg(conditionCode, localTime);
+    currentWeatherDomElements.weatherDashboard.style.backgroundImage = `url(${backgroundImage})`;
     currentWeatherDomElements.cityName.textContent = cityName;
     currentWeatherDomElements.currentTemp.innerHTML = `${currentWeatherData.temp}${DEGREE_SYMBOL}`;
     currentWeatherDomElements.currentCondition.textContent =
@@ -51,5 +58,8 @@ export default function populateCurrentWeatherDisplay(
     currentWeatherDomElements.highTemp.innerHTML = `H:${currentWeatherData.maxTemp}${DEGREE_SYMBOL}`;
     currentWeatherDomElements.highLowDividerSlash.textContent = "/";
     currentWeatherDomElements.lowTemp.innerHTML = `L:${currentWeatherData.minTemp}${DEGREE_SYMBOL}`;
+
+    // Display current weather Element
+    currentWeatherDomElements.currentWeatherContainer.style.display = "grid";
   });
 }

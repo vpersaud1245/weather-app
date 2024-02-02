@@ -202,11 +202,11 @@ body {
 
 .current-weather {
   height: 250px;
-  display: grid;
   place-content: center;
   color: white;
   text-align: center;
   border-radius: 5px;
+  display: none;
 }
 
 .current-weather__city {
