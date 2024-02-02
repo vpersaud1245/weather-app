@@ -1,4 +1,5 @@
 import { getDay, isToday, parse } from "date-fns";
+import getWeatherIcon from "../service/weatherIconService";
 
 const dayIndexMap = {
   0: "Sunday",
@@ -52,6 +53,8 @@ function appendForecastDataElement(
   forecastLowTemp,
   forecastItem,
 ) {
+  const DEGREE_SYMBOL = "&deg;";
+
   const day = document.createElement("div");
   day.classList.add("forecast-item__day");
   day.textContent = forecastedDay;
@@ -59,17 +62,18 @@ function appendForecastDataElement(
   const conditionIcon = document.createElement("img");
   conditionIcon.classList.add("forecast-item__condition-icon");
   conditionIcon.alt = "condition-icon";
+  conditionIcon.src = getWeatherIcon(forecastedConditionCode);
 
   const highLowWrapper = document.createElement("div");
   highLowWrapper.classList.add("forecast-item__high-low");
 
   const highTemp = document.createElement("div");
   highTemp.classList.add("forecast-item__high-low--high");
-  highTemp.textContent = forecastedHighTemp;
+  highTemp.innerHTML = `${forecastedHighTemp}${DEGREE_SYMBOL}`;
 
   const lowTemp = document.createElement("div");
   lowTemp.classList.add("forecast-item__high-low--low");
-  lowTemp.textContent = forecastLowTemp;
+  lowTemp.innerHTML = `${forecastLowTemp}${DEGREE_SYMBOL}`;
 
   highLowWrapper.append(highTemp, lowTemp);
   forecastItem.append(day, conditionIcon, highLowWrapper);

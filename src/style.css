@@ -185,6 +185,11 @@ body {
   ----- WEATHER DASHBOARD -----
 */
 
+.weather-dashboard {
+  height: 100vh;
+  background-size: cover;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -236,12 +241,16 @@ body {
   color: #ababc4;
   font-size: 12px;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .weather-forecast-data {
   display: flex;
   justify-content: center;
+  justify-content: space-evenly;
+  background-color: rgba(181, 181, 197, 0.292);
+  border-radius: 5px;
+  padding: 10px 0;
 }
 
 .weather-forecast-data__forecast-item {
@@ -250,4 +259,23 @@ body {
   flex-direction: column;
   border-radius: 5px;
   align-items: center;
+  width: 75px;
+}
+
+.forecast-item__condition-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.forecast-item__high-low {
+  text-align: center;
+}
+
+.forecast-item__high-low--high {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.forecast-item__high-low--low {
+  font-size: 14px;
 }

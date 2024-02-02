@@ -1,7 +1,7 @@
 import {
   createApiUrl,
   createForecastObjectArray,
-} from "../serviceModules/weatherAPIService";
+} from "../service/weatherAPIService";
 
 /* ----- API CALLS ----- */
 
