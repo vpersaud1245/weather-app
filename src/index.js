@@ -28,4 +28,5 @@ renderSearchBar();
  * - Add cancel btn animation
  * Make a render weather dashboard function
  * Make loading pages/wheels
+ * Media queries
  */

@@ -2,9 +2,7 @@ import {
   getSearchAutofillResults,
   getWeatherForecast,
 } from "./weatherAPIController";
-import populateCurrentWeatherDisplay from "./currentWeatherDisplayController";
-import populateForecastDisplay from "./forecastDisplayController";
-import populateWeatherDetailDisplay from "./weatherDetailDisplayController";
+import renderWeatherDashboard from "./weatherDashboardController";
 
 /*
   ----- UI HELPER FUNCTIONS -----
@@ -209,9 +207,7 @@ function createAutofillOptionHtmlElement(
   optionElement.addEventListener("click", () => {
     cancelSearch();
     const weatherData = getWeatherForecast(locationURL, 3);
-    populateCurrentWeatherDisplay(cityName, weatherData);
-    populateForecastDisplay(weatherData);
-    populateWeatherDetailDisplay(weatherData);
+    renderWeatherDashboard(cityName, weatherData);
   });
   return optionElement;
 }
