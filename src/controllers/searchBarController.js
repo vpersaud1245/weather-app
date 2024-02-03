@@ -149,6 +149,36 @@ function renderCancelSearchBtn() {
 }
 
 /**
+ * Highlights the matching portion of the search bar input in the autofill option.
+ * @param {HTMLElement} optionElement - The HTML element representing the autofill option.
+ * @param {string} optionText - The text content of the autofill option.
+ */
+function highlightAutofillText(optionElement, optionText) {
+  // Get searchBar value to be used in option element highlighting
+  const searchBar = document.querySelector(".location-search-form__searchbar");
+  const searchBarValue = searchBar.value;
+
+  // Find starting index where searchBar value is the same as option
+  const colorChangeStart = optionText
+    .toLowerCase()
+    .indexOf(searchBarValue.toLowerCase());
+
+  const optionTextSplit = optionText.split("");
+
+  // Add characters to option element
+  for (let i = 0; i < optionText.length; i += 1) {
+    const optionElementChar = document.createElement("span");
+    optionElementChar.classList.add("option__char");
+    optionElementChar.textContent = optionTextSplit[i];
+    // Highlight search bar value in option text by applying classes
+    if (i >= colorChangeStart && i < colorChangeStart + searchBarValue.length) {
+      optionElementChar.classList.add("white");
+    }
+    optionElement.appendChild(optionElementChar);
+  }
+}
+
+/**
  * Creates an HTML element representing a search autofill option and configures event listeners for interaction.
  * When clicked, the option triggers the display of the weather dashboard for the selected location.
  * @param {string} cityName - The name of the city.
@@ -167,7 +197,8 @@ function createAutofillOptionHtmlElement(
   const optionElement = document.createElement("li");
   optionElement.classList.add("autofill-options-list__option");
   optionElement.id = locationURL;
-  optionElement.textContent = `${cityName}, ${region}, ${country}`;
+  const optionText = `${cityName}, ${region}, ${country}`;
+  highlightAutofillText(optionElement, optionText);
 
   // Add mousedown listener to change background color to selected state
   optionElement.addEventListener("mousedown", () => {

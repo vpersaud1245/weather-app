@@ -80,7 +80,7 @@ body {
 */
 .header {
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /*
@@ -157,6 +157,10 @@ body {
   z-index: 1;
 }
 
+.option__char.white {
+  color: white;
+}
+
 .autofill-options-list__option {
   padding: 0 42px;
   width: 100vw;
@@ -202,7 +206,7 @@ body {
 */
 
 .current-weather {
-  height: 250px;
+  height: 200px;
   place-content: center;
   color: white;
   text-align: center;

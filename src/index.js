@@ -26,7 +26,6 @@ renderSearchBar();
  * ----- TODO -----
  * * SEARCH:
  * - Add cancel btn animation
- * - Add text highlighting to match search
  * Make a render weather dashboard function
  * Make loading pages/wheels
  */
