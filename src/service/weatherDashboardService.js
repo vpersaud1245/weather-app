@@ -1,3 +1,9 @@
+/**
+ * Resets the weather dashboard by clearing and reinitializing the main content area.
+ * This function sets the inner HTML of the main container with default weather display elements.
+ * @function
+ * @returns {void}
+ */
 export default function resetWeatherDashboard() {
   const weatherDashboardMain = document.querySelector(".main");
   weatherDashboardMain.innerHTML = `<main class="main">

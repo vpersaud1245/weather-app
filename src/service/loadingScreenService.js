@@ -1,4 +1,9 @@
-function getDomELements() {
+/**
+ * Retrieves DOM elements for the skeleton loading screen.
+ * @function
+ * @returns {HTMLElement[]} - Array of DOM elements.
+ */
+function getSkeletonDomELements() {
   const currentWeatherContainer = document.querySelector(".current-weather");
   const weatherForecastContainer = document.querySelector(".weather-forecast");
   const weatherDetailPrecipitation = document.querySelector(
@@ -30,16 +35,26 @@ function getDomELements() {
   ];
 }
 
+/**
+ * Displays the skeleton loading screen by adding the "skeleton" ID to specified DOM elements.
+ * @function
+ * @returns {void}
+ */
 export function showSkeletonLoadingScreen() {
-  const domElements = getDomELements();
-  for (let i = 0; i < domElements.length; i += 1) {
-    const element = domElements[i];
+  const domElements = getSkeletonDomELements();
+  // Loop through elements and add skeleton ID
+  domElements.forEach((element) => {
     element.setAttribute("ID", "skeleton");
-  }
+  });
 }
 
+/**
+ * Stops the skeleton loading screen by removing the "skeleton" ID from specified DOM elements.
+ * @function
+ * @returns {void}
+ */
 export function stopSkeletonLoading() {
-  const domElements = getDomELements();
+  const domElements = getSkeletonDomELements();
   domElements.forEach((element) => {
     element.removeAttribute("ID");
   });
