@@ -1,8 +1,10 @@
 import populateCurrentWeatherDisplay from "./currentWeatherDisplayController";
 import populateForecastDisplay from "./forecastDisplayController";
 import populateWeatherDetailDisplay from "./weatherDetailDisplayController";
+import { getWeatherForecast } from "./weatherAPIController";
 
-export default function renderWeatherDashboard(cityName, weatherData) {
+export function renderWeatherDashboard(cityName, locationURL) {
+  const weatherData = getWeatherForecast(locationURL, 3);
   populateCurrentWeatherDisplay(cityName, weatherData);
   populateForecastDisplay(weatherData);
   populateWeatherDetailDisplay(weatherData);

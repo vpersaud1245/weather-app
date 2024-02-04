@@ -1,8 +1,7 @@
-import {
-  getSearchAutofillResults,
-  getWeatherForecast,
-} from "./weatherAPIController";
-import renderWeatherDashboard from "./weatherDashboardController";
+import { showSkeletonLoadingScreen } from "../service/loadingScreenService";
+import { getSearchAutofillResults } from "./weatherAPIController";
+import { renderWeatherDashboard } from "./weatherDashboardController";
+import resetWeatherDashboard from "../service/weatherDashboardService";
 
 /*
   ----- UI HELPER FUNCTIONS -----
@@ -206,8 +205,9 @@ function createAutofillOptionHtmlElement(
   // Add click listener to render weather forecast for selected location
   optionElement.addEventListener("click", () => {
     cancelSearch();
-    const weatherData = getWeatherForecast(locationURL, 3);
-    renderWeatherDashboard(cityName, weatherData);
+    resetWeatherDashboard();
+    showSkeletonLoadingScreen();
+    renderWeatherDashboard(cityName, locationURL);
   });
   return optionElement;
 }

@@ -1,4 +1,5 @@
 import getBackgroundImg from "../service/backroundImageService";
+import { stopSkeletonLoading } from "../service/loadingScreenService";
 
 /**
  * Returns An object containing all of the current weather DOM elements
@@ -58,8 +59,8 @@ export default function populateCurrentWeatherDisplay(
     currentWeatherDomElements.highTemp.innerHTML = `H:${currentWeatherData.maxTemp}${DEGREE_SYMBOL}`;
     currentWeatherDomElements.highLowDividerSlash.textContent = "/";
     currentWeatherDomElements.lowTemp.innerHTML = `L:${currentWeatherData.minTemp}${DEGREE_SYMBOL}`;
-
     // Display current weather Element
     currentWeatherDomElements.currentWeatherContainer.style.display = "grid";
+    stopSkeletonLoading();
   });
 }

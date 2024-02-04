@@ -240,6 +240,7 @@ body {
 
 .weather-forecast {
   display: none;
+  border-radius: 5px;
 }
 
 .weather-forecast__title {
@@ -297,9 +298,11 @@ body {
     "humidity uv-index";
   color: white;
   gap: 10px;
+  border-radius: 5px;
 }
 
 .weather-details__title {
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -339,4 +342,22 @@ body {
 }
 .weather-details__uv-index {
   grid-area: uv-index;
+}
+
+/*
+  ----- SKELETON LOADING -----
+*/
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+#skeleton {
+  animation: skeleton-loading 400ms linear infinite alternate;
+  display: block;
 }

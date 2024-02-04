@@ -9,8 +9,48 @@ function getWeatherDetailDomElements() {
   const windSpeed = document.querySelector(
     ".weather-details__data--wind-speed",
   );
+  const precipitationTitle = document.querySelector(
+    ".weather-details__title--precipitation",
+  );
+  const feelsLikeTitle = document.querySelector(
+    ".weather-details__title--feels-like",
+  );
+  const windSpeedTitle = document.querySelector(
+    ".weather-details__title--wind-speed",
+  );
+  const humidityTitle = document.querySelector(
+    ".weather-details__title--humidity",
+  );
+  const uvIndexTitle = document.querySelector(
+    ".weather-details__title--uv-index",
+  );
   const uvIndex = document.querySelector(".weather-details__data--uv-index");
-  return { precipitation, feelsLike, humidity, windSpeed, uvIndex };
+  return {
+    precipitation,
+    feelsLike,
+    humidity,
+    windSpeed,
+    uvIndex,
+    precipitationTitle,
+    feelsLikeTitle,
+    windSpeedTitle,
+    humidityTitle,
+    uvIndexTitle,
+  };
+}
+
+function setWeatherDetailTitles() {
+  const weatherDetailDomElements = getWeatherDetailDomElements();
+  const { precipitationTitle } = weatherDetailDomElements;
+  precipitationTitle.textContent = "PRECIPITATION";
+  const { feelsLikeTitle } = weatherDetailDomElements;
+  feelsLikeTitle.textContent = "FEELS LIKE";
+  const { windSpeedTitle } = weatherDetailDomElements;
+  windSpeedTitle.textContent = "WIND SPEED";
+  const { humidityTitle } = weatherDetailDomElements;
+  humidityTitle.textContent = "HUMIDITY";
+  const { uvIndexTitle } = weatherDetailDomElements;
+  uvIndexTitle.textContent = "UV INDEX";
 }
 
 function getWeatherDetailValues(weatherData) {
@@ -29,6 +69,7 @@ function getWeatherDetailValues(weatherData) {
 export default async function populateWeatherDetailDisplay(weatherData) {
   const weatherDetails = await getWeatherDetailValues(weatherData);
   const weatherDetailDomElements = getWeatherDetailDomElements();
+  setWeatherDetailTitles();
   const DEGREE_SYMBOL = "&deg;";
   console.log(weatherDetails.precipitation);
   weatherDetailDomElements.precipitation.textContent = `${weatherDetails.precipitation}%`;

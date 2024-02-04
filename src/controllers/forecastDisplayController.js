@@ -44,6 +44,10 @@ function clearForecastDisplay() {
  */
 function displayWeatherForecast() {
   const weatherForecast = document.querySelector(".weather-forecast");
+  const weatherForecastTitle = document.querySelector(
+    ".weather-forecast__title",
+  );
+  weatherForecastTitle.textContent = "3-DAY FORECAST";
   weatherForecast.style.display = "block";
 }
 
