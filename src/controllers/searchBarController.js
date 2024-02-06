@@ -244,7 +244,9 @@ export default function addSearchbarEvents() {
 
     // Change background color and populate autofill option list if searchbar is not empty
     if (searchValue !== "") {
-      setFormBoxShadow("black");
+      if (window.innerWidth < 768) {
+        setFormBoxShadow("black");
+      }
       renderClearSearchbarBtn();
       hideAutofillOptionList();
       clearAutoFillOptionsList();

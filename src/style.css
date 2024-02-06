@@ -196,6 +196,13 @@ body {
   background-color: transparent;
   color: var(--cancel-search-btn-text-clr);
   z-index: 1;
+  padding: 0;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.header__cancel-search-btn:hover {
+  cursor: pointer;
 }
 
 /*
@@ -258,6 +265,7 @@ body {
 .weather-forecast {
   display: none;
   border-radius: 5px;
+  grid-area: forecast;
 }
 
 .weather-forecast__title {
@@ -310,6 +318,7 @@ body {
 .weather-details {
   display: none;
   grid-template-areas:
+    "forecast forecast"
     "precipitation precipitation"
     "feels-like wind-speed"
     "humidity uv-index";
@@ -377,4 +386,51 @@ body {
 #skeleton {
   animation: skeleton-loading 400ms linear infinite alternate;
   display: block;
+}
+
+@media (max-width: 320px) {
+  .location-search-form__searchbar {
+    font-size: 12px;
+  }
+
+  .autofill-options-list__option {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .weather-details {
+    grid-template-areas:
+      "forecast forecast feels-like"
+      "precipitation precipitation uv-index"
+      "wind-speed wind-speed humidity";
+  }
+
+  .weather-details__feels-like {
+    margin-top: 33px;
+    height: 139px;
+  }
+
+  .header {
+    justify-content: flex-end;
+  }
+
+  .location-search-form {
+    max-width: 300px;
+    min-width: none;
+  }
+
+  .searchbar__autofill-options-list {
+    max-width: 350px;
+    left: auto;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .autofill-options-list__option {
+    padding: 0;
+    max-width: 344px;
+  }
 }
