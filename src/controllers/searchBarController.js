@@ -241,6 +241,23 @@ function populateAutoFillOptionsList(autofillOptions) {
   });
 }
 
+function renderNoResultsFound() {
+  const noResultsFound = document.createElement("li");
+  noResultsFound.classList.add("autofill-options-list__option");
+  noResultsFound.classList.add("autofill-options-list__option--no-results");
+  noResultsFound.textContent = "No results found";
+  clearAutoFillOptionsList();
+  const autofillOptionsList = document.querySelector(
+    ".searchbar__autofill-options-list",
+  );
+  autofillOptionsList.appendChild(noResultsFound);
+  renderAutofillOptionList();
+}
+
+/**
+ * Define timer variable to be used in delaying the search function until the user is finished typing
+ */
+let timer;
 /*
   ----- ADD SEARCHBAR EVENTS -----
 */
@@ -279,6 +296,7 @@ export default function addSearchbarEvents() {
    * Updates UI states based on the input value and triggers autofill options retrieval.
    */
   searchbar.addEventListener("input", async () => {
+    clearTimeout(timer);
     const searchValue = searchbar.value;
     // Change background color and reset autofill option list if searchbar is empty
     if (searchValue === "") {
@@ -295,25 +313,16 @@ export default function addSearchbarEvents() {
       renderClearSearchbarBtn();
       hideAutofillOptionList();
       clearAutoFillOptionsList();
-      const autofillOptions = await getSearchAutofillResults(searchValue);
-      if (autofillOptions.length > 0) {
-        clearAutoFillOptionsList();
-        populateAutoFillOptionsList(autofillOptions);
-        renderAutofillOptionList();
-      } else {
-        const noResultsFound = document.createElement("li");
-        noResultsFound.classList.add("autofill-options-list__option");
-        noResultsFound.classList.add(
-          "autofill-options-list__option--no-results",
-        );
-        noResultsFound.textContent = "No results found";
-        clearAutoFillOptionsList();
-        const autofillOptionsList = document.querySelector(
-          ".searchbar__autofill-options-list",
-        );
-        autofillOptionsList.appendChild(noResultsFound);
-        renderAutofillOptionList();
-      }
+      timer = setTimeout(async () => {
+        const autofillOptions = await getSearchAutofillResults(searchValue);
+        if (autofillOptions.length > 0) {
+          clearAutoFillOptionsList();
+          populateAutoFillOptionsList(autofillOptions);
+          renderAutofillOptionList();
+        } else {
+          renderNoResultsFound();
+        }
+      }, 300);
     }
   });
 }
