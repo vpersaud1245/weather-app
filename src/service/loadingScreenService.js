@@ -59,3 +59,24 @@ export function stopSkeletonLoading() {
     element.removeAttribute("ID");
   });
 }
+
+// function createOptionLoadingSpinner() {
+//   const loadingSpinner = document.createElement("div");
+//   loadingSpinner.classList.add("spinner");
+//   return loadingSpinner;
+// }
+
+// export function showOptionLoadingWheel() {
+//   const cancelButton = document.querySelector(".header__cancel-search-btn");
+//   const header = document.querySelector(".header");
+//   cancelButton.style.display = "none";
+//   const loadingSpinner = createOptionLoadingSpinner();
+//   header.append(loadingSpinner);
+// }
+
+// export function hideOptionLoadingWheel() {
+//   const cancelButton = document.querySelector(".header__cancel-search-btn");
+//   const loadingSpinner = document.querySelector(".spinner");
+//   loadingSpinner.remove();
+//   cancelButton.style.display = "inline";
+// }

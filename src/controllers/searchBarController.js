@@ -1,6 +1,6 @@
 import { showSkeletonLoadingScreen } from "../service/loadingScreenService";
 import { getSearchAutofillResults } from "./weatherAPIController";
-import { renderWeatherDashboard } from "./weatherDashboardController";
+import renderWeatherDashboard from "./weatherDashboardController";
 import resetWeatherDashboard from "../service/weatherDashboardService";
 
 /*
@@ -292,12 +292,26 @@ export default function addSearchbarEvents() {
     // Change background color and populate autofill option list if searchbar is not empty
     if (searchValue !== "") {
       setFormBoxShadow("black");
-      hideAutofillOptionList();
       renderClearSearchbarBtn();
-      const autofillOptions = await getSearchAutofillResults(searchValue);
+      hideAutofillOptionList();
       clearAutoFillOptionsList();
+      const autofillOptions = await getSearchAutofillResults(searchValue);
       if (autofillOptions.length > 0) {
+        clearAutoFillOptionsList();
         populateAutoFillOptionsList(autofillOptions);
+        renderAutofillOptionList();
+      } else {
+        const noResultsFound = document.createElement("li");
+        noResultsFound.classList.add("autofill-options-list__option");
+        noResultsFound.classList.add(
+          "autofill-options-list__option--no-results",
+        );
+        noResultsFound.textContent = "No results found";
+        clearAutoFillOptionsList();
+        const autofillOptionsList = document.querySelector(
+          ".searchbar__autofill-options-list",
+        );
+        autofillOptionsList.appendChild(noResultsFound);
         renderAutofillOptionList();
       }
     }

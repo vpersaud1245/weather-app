@@ -170,6 +170,23 @@ body {
   cursor: pointer;
 }
 
+/* Loading Spinner */
+.spinner {
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  border: 3px solid;
+  border-color: white transparent white transparent;
+  border-radius: 50%;
+  animation: spin 1.2s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /*
   ----- CANCEL SEARCH BTN -----
 */
